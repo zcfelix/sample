@@ -12,3 +12,26 @@ zhouying:
   name: ybzhou
   email: ybzhou@thoughtworks.com
   password_digest: <%= User.digest('password') %>
+  admin: true
+
+susu:
+  name: susu
+  email: syliu@thoughtworks.com
+  password_digest: <%= User.digest('password') %>
+
+sarah:
+  name: sarah
+  email: skrueger@thoughtworks.com
+  password_digest: <%= User.digest('password') %>
+
+ana:
+  name: ana
+  email: alacerda@thoughtworks.com
+  password_digest: <%= User.digest('password') %>
+
+<% 30.times do |n| %>
+user_<%= n %>:
+  name: <%= "user-#{n}" %>
+  email: <%= "user-#{n}@example.com" %>
+  password_digest: <%= User.digest('password') %>
+<% end %>
