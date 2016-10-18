@@ -11,12 +11,12 @@ class PasswordResetsTest < ActionDispatch::IntegrationTest
     assert_template 'password_resets/new'
 
     # Invalid email
-    post password_resets_path, params: { password_resets: { email: "" } }
+    post password_resets_path, params: { password_reset: { email: "" } }
     assert_not flash.empty?
     assert_template 'password_resets/new'
 
     # Valid email
-    post password_resets_path, params: { password_resets: { email: @user.email} }
+    post password_resets_path, params: { password_reset: { email: @user.email} }
     assert_not_equal @user.reset_digest, @user.reload.reset_digest
     assert_equal 1, ActionMailer::Base.deliveries.size
     assert_not flash.empty?
@@ -71,7 +71,7 @@ class PasswordResetsTest < ActionDispatch::IntegrationTest
 
   test "expired token" do
     get new_password_reset_path
-    post password_resets_path, params: { password_resets: { email: @user.email } }
+    post password_resets_path, params: { password_reset: { email: @user.email } }
     @user = assigns(:user)
     @user.update_attribute(:reset_sent_at, 3.hours.ago)
     patch password_reset_path(@user.reset_token), params: {
