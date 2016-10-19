@@ -8,12 +8,12 @@ orange:
 banana:
   content: "I just ate a banana!"
   created_at: <%= 3.years.ago %>
-  user: zhouying
+  user: ana
 
 twu:
   content: "A very awesome journey in pune!!!"
   created_at: <%= 2.months.ago %>
-  user: zhouying
+  user: susu
 
 most_recent:
   content: "Writing a short test"

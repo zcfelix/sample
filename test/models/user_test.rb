@@ -75,4 +75,36 @@ class UserTest < ActiveSupport::TestCase
     end
   end
 
+  test "should follow and unfollow a user" do
+    zhouying = users(:zhouying)
+    susu = users(:susu)
+    zhouying.follow(susu)
+    assert zhouying.following?(susu)
+    assert susu.followers.include?(zhouying)
+    zhouying.unfollow(susu)
+    assert_not zhouying.following?(susu)
+    assert_not susu.followers.include?(zhouying)
+  end
+
+  test "should have the right posts" do
+    zhouying = users(:zhouying)
+    ana = users(:ana)
+    susu = users(:susu)
+
+    # Posts from followed user
+    ana.microposts.each do |post_following|
+      assert zhouying.feed.include?(post_following)
+    end
+
+    # Posts from self
+    zhouying.microposts.each do |post_self|
+      assert zhouying.feed.include?(post_self)
+    end
+
+    # Posts from unfollowed user
+    susu.microposts.each do |post_unfollowed|
+      assert_not zhouying.feed.include?(post_unfollowed)
+    end
+  end
+
 end

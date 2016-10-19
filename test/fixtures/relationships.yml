@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  follower: zhouying
+  followed: ana
+
+two:
+  follower: ana
+  followed: zhouying
+
+three:
+  follower: sarah
+  followed: zhouying
+
+four:
+  follower: zhouying
+  followed: sarah
